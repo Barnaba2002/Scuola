@@ -1,7 +1,7 @@
 #include <iostream>
-#include<vector>
-#include<stdio.h>
-#include<stdlib.h>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 void mostravett(const vector<int> &vett)
@@ -61,8 +61,9 @@ int main()
     vector<int> vb;
     vector<int> vc;
     cout<<"questo proggramma esegue il merche sort"<<endl;
-    cout<<"inserisci le lunghezze corrispondenti al primo vettore e al secondo: ";
+    cout<<"lunghezza primo vett: ";
     cin>>lunga;
+    cout<<"\nlunghezza secondo vett: ";
     cin>>lungb;
     va.resize(lunga);
     vb.resize(lungb);
