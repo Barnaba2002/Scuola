@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1516890402 source:c:\users\barnaba\desktop\scuola\merchesort\main.cpp
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+
+1516898819 source:c:\users\barnaba\desktop\scuola\c++\merchesort\main.cpp
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+
