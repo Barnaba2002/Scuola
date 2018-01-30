@@ -1,3 +1,9 @@
+/**
+ * @author Alberto Basaglia , Barnaba Rallo , Leonardo Campagnol
+ * @date 30/01/2018
+ * @version 1.0
+ * Il programma , composto da 2 classi , permette un confronto visivo delle risorse utilizzate dai vari ordinamenti.
+ * */
 import java.awt.*;
 import java.lang.Math.*;
 import java.util.Random;
@@ -9,16 +15,26 @@ class Contatore
 {
     public long confronti;
     public long assegnamenti;
+    /**
+     * costruttore della classe , imposta a 0 i contatori
+     * */
     public Contatore()
     {
         confronti = 0;
         assegnamenti = 0;
     }
+    /**
+     * metodo che azzera i contatori
+     * */
     public void reset()
     {
         confronti = 0;
         assegnamenti = 0;
     }
+    /**
+     * Il metodo permette di ritornare una stringa che contiene gli assegnamenti e i confronti
+     * @return stringa da ritornare
+     * */
     @Override
     public String toString()
     {
@@ -27,6 +43,11 @@ class Contatore
 }
 public class TestClass
 {
+    /**
+     * Il metodo ordina un array utilizzando l'algoritmo bubble sort
+     * @param array è il vettore da ordinare
+     * @param c riferimento all'oggetto contatore che permette di salvare gli assegnamenti e i confronti che sono stati fatti
+     * */
     public static void bubble(int[] array,Contatore c)
     {
         c.reset();
@@ -45,6 +66,11 @@ public class TestClass
             if(!flag) break;
         }
     }
+    /**
+     * Il metodo ordina un array utilizzando l'algoritmo selection sort
+     * @param array è il vettore da ordinare
+     * @param c riferimento all'oggetto contatore che permette di salvare gli assegnamenti e i confronti che sono stati fatti
+     * */
     public static void selection(int[] array,Contatore c)
     {
         c.reset();
@@ -52,6 +78,7 @@ public class TestClass
         for(int i=0;i<array.length;i++)
         {
             int minimo = array[i];
+            c.assegnamenti++;
             for(int k = i+1;k<array.length;k++)
             {
                 c.confronti++;
@@ -68,6 +95,12 @@ public class TestClass
             array[posmin] = scambio;
         }
     }
+    /**
+     * Il metodo permette di caricare un array casualmente fornendo il suo seed
+     * @param n elementi da caricare nel vettore
+     * @param seed seed da utilizzare per la generazione casuale, se viene inserito 0 il seed non sarà inizializzato
+     * @return il vettore caricato
+     * */
     public static int[] caricaRand(int n,long seed)
     {
         int[] newarray = new int[n];
@@ -82,6 +115,12 @@ public class TestClass
         }
         return newarray;
     }
+    /**
+     * Il metodo permette di caricare un array sequenzialmente
+     * @param n elementi da caricare nel vettore
+     * @param reverse se TRUE il vettore sarà caricato al contrario
+     * @return il vettore caricato
+     * */
     public static int[] caricaSeq(int n,boolean reverse)
     {
         int[] newarray = new int[n];
@@ -100,6 +139,10 @@ public class TestClass
 
         return newarray;
     }
+    /**
+     * La funzione scrive a schermo il vettore
+     * @param array il vettore da mostrare
+     * */
     public static void mostra(int[] array)
     {
         for(int i = 0;i<array.length;i++)
@@ -108,10 +151,10 @@ public class TestClass
         }
     }
     public static double size = 600;
-    public static double converti(double N)
-    {
-        return N/size;
-    }
+    /**
+     * Il metodo disegna gli assi necessari per il grafico
+     * @param t riferimento alla tartaruga che verrà utilizzata per i disegni
+     * */
     public static void faiAssi(Tartaruga t)
     {
         t.pennaSu();
@@ -123,6 +166,13 @@ public class TestClass
         t.pennaGiu();
         t.gotoXY(1,0.15);
     }
+    /**
+     * Il metodo ordina un array utilizzando l'algoritmo quick ricorsivo
+     * @param vec vettore da ordinare
+     * @param inf limite inferiore
+     * @param sup limite superiore
+     * @param c riferimento all'oggetto contatore che permette di salvare gli assegnamenti e i confronti che sono stati fatti
+     * */
     public static void quickSort(int vec[],int inf,int sup,Contatore c)
     {
 
@@ -165,6 +215,11 @@ public class TestClass
         c.confronti++;
         if(i< sup) quickSort(vec,i,sup,c);
     }
+    /**
+     * Metodo per semplificare l'accesso all'algoritmo ricorsivo di quicksort
+     * @param vec vettore da ordinare
+     * @param c riferimento all'oggetto contatore che permette di salvare gli assegnamenti e i confronti che sono stati fatti
+     * */
     public static void quickSort(int[] vec,Contatore c)
     {
         c.reset();
@@ -172,7 +227,7 @@ public class TestClass
     }
     public static void main(String[] args)
     {
-        Scanner key = new Scanner(System.in);
+        Scanner key = new Scanner(System.in); //oggetto Scanner per leggere da tastiera
         int metodoConfronti=0;
         do {
             System.out.print("Fase 1)\nScelta del metodo di confronto\n1)Confronti\n2)Assegnamenti\nInserisci Scelta: ");
@@ -191,6 +246,9 @@ public class TestClass
         t.pennaSu();
         t.gotoXY(0.15,0.15);
         t.pennaGiu();
+
+
+        //questo pezzo di codice serve per fornire una descrizione a schermo su quello che si sta facendo
         String daScrivere = "";
         if(metodoConfronti==1){
             daScrivere+="Comparazione dei Confronti effettuati dai diversi ordinamenti utilizzando vettori ";
@@ -205,21 +263,28 @@ public class TestClass
             daScrivere+="caricati ordinati al contrario.";
         }
         testo(0.5,0.92,daScrivere,0,NERO);
+
+        //inizializzate variabili per disegnare il grafico
         double xprecedente;
         double yprecedente;
         double x;
         double y;
         xprecedente = 0.15;
         yprecedente = 0.15;
+
+        //aggiunte informazioni a schermo
         testo(0.575,0.05,"Elementi nel vettore",0,NERO);
         if(metodoConfronti==1)
             testo(0.03,0.575,"Confronti",-90,NERO);
         else
             testo(0.03,0.575,"Assegnamenti",-90,NERO);
+
+        //inizio del codice per calcolare il selection sort
         setColore(BLU);
         testo(0.07,0.3,"Selection Sort",0,BLU);
-        for(int i=1;i<=40;i++) //selection sort
+        for(int i=1;i<=40;i++)
         {
+            //a seconda dei tipi di confronto viene caricato un diverso vettore
             if(metodoOrdinamento==1) {
                 vettore = caricaRand(500 * i, 2000);
             }else if(metodoOrdinamento==2){
@@ -230,6 +295,7 @@ public class TestClass
             long paragone;
             double scala=0.0000000015;
             selection(vettore,c);
+            //a seconda dei tipi di confronto viene impostata una diversa scala
             if(metodoConfronti==1){
                 paragone = c.confronti;
             }else{
@@ -240,6 +306,7 @@ public class TestClass
                     scala = 0.000000015;
                 }
             }
+            //viene tracciata a schermo la linea
             x = 0.15+(0.02*i);
             y = 0.15+paragone*scala;
             linea(xprecedente,yprecedente,x,y);
@@ -255,6 +322,8 @@ public class TestClass
             }
             setColore(BLU);
         }
+
+        //inizio del codice per calcolare il bubble sort
         xprecedente = 0.15;
         yprecedente = 0.15;
         setColore(ROSSO);
@@ -291,6 +360,8 @@ public class TestClass
                 cerchio(x,y,0.005);
             }
         }
+
+        //inizio del codice per calcolare il quick
         xprecedente = 0.15;
         yprecedente = 0.15;
         setColore(VERDE);

@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="zuclib3.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../zuclib3.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/zuclib3.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
